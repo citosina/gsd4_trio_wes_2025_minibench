@@ -1,0 +1,17 @@
+cat > .gitignore <<'EOF'
+# Ignore all unpacked data
+sample_submission_boilerplate/data/*
+!sample_submission_boilerplate/data/README.md
+
+# Ignore any large local DataFiles folders or zips
+DataFiles/
+*.zip
+
+# Ignore common temp/system files
+*.log
+*.tmp
+*.swp
+.DS_Store
+__pycache__/
+EOF
+
