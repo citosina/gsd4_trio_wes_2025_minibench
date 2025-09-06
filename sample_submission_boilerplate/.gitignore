@@ -1,28 +1,81 @@
-cat > .gitignore <<'EOF'
-# Ignore all unpacked data
-sample_submission_boilerplate/data/*
-!sample_submission_boilerplate/data/README.md
-
-# Ignore any large local DataFiles folders or zips
-DataFiles/
-*.zip
-
-# Ignore common temp/system files
+# -----------------------------
+# General ignores
+# -----------------------------
 *.log
 *.tmp
 *.swp
+*.bak
+*.lock
 .DS_Store
+Thumbs.db
 __pycache__/
-EOF
-# Ignore SSH keys
+*.py[cod]
+
+# -----------------------------
+# GitHub / system clutter
+# -----------------------------
+.ipynb_checkpoints/
+*.ipynb_checkpoint
+*.Rhistory
+*.RData
+*.Rproj.user/
+
+# -----------------------------
+# Bioinformatics: large data files
+# -----------------------------
+# Raw and intermediate sequencing data
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.sam
+*.bam
+*.bam.bai
+*.cram
+*.cram.crai
+
+# Variants
+*.vcf
+*.vcf.gz
+*.vcf.gz.tbi
+*.bcf
+*.bcf.csi
+
+# Reference genomes / annotations
+*.fa
+*.fasta
+*.fa.gz
+*.fasta.gz
+*.fa.fai
+*.dict
+*.gff
+*.gff3
+*.gtf
+
+# Coverage / depth files
+*.bed
+*.bed.gz
+*.bedGraph
+*.wig
+
+# -----------------------------
+# Project-specific: exclude data & results
+# -----------------------------
+# Data files (only keep README.md under data/)
+sample_submission_boilerplate/data/*
+!sample_submission_boilerplate/data/README.md
+
+# Any shared DataFiles archives
+DataFiles/
+*.zip
+
+# Results folder (BAMs, VCFs, QC outputs)
+results/
+
+# -----------------------------
+# Security: never commit private keys
+# -----------------------------
 key
 key.pub
-*.pem
-*.ppk
+*.*
 
-
-# Ignore SSH keys
-key
-key.pub
-*.pem
-*.ppk
