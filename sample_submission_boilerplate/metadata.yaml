@@ -1,0 +1,9 @@
+paper_title: "Clinical phenotype and trio whole exome sequencing data from a patient with glycogen storage disease IV in Indonesia"
+doi: 10.1016/j.dib.2024.111231
+data_source: "SRA: PRJNA1077459 (SRR27997290, SRR27997291, SRR27997292)"
+domain: exome_seq
+ref_genome: "GRCh38 (chr3 subset)"
+tools: [bwa-mem2 2.2.1, samtools 1.20, sambamba 1.0.1, bcftools 1.20, snpEff 5.2]
+estimated_runtime_minutes: 45
+estimated_time_for_human: 60
+

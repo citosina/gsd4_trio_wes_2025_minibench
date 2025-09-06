@@ -1,0 +1,40 @@
+task: >
+  You have been given raw exome sequencing data from a trio (father, mother, proband)
+  affected by glycogen storage disease IV. Using the provided subsampled paired-end FASTQ
+  files and a GRCh38 chr3 reference, answer the following.
+
+questions:
+  - id: q1
+    stage: data_prep
+    text: |
+      After subsampling with seed=100, how many reads are present in
+      SRR27997292_1.mini150k_s100.fastq.gz?
+    answer_type: integer_exact
+
+  - id: q2
+    stage: joint_calling
+    text: |
+      How many samples appear in the VCF header line beginning with '#CHROM'
+      produced by 02_joint_call_bcftools.sh?
+    answer_type: integer_exact
+
+  - id: q3
+    stage: joint_calling
+    text: |
+      What is the exact sample order (left-to-right) in the VCF columns after FORMAT?
+    answer_type: string_exact
+
+  - id: q4
+    stage: mendelian_check
+    text: |
+      Provide the exact three lines of the PED file used for bcftools +mendelian
+      (results/reports/trio.ped). Use single spaces between fields.
+    answer_type: string_multiline
+
+  - id: q5
+    stage: annotation
+    text: |
+      Which gene symbol is used to prefilter candidates in the optional annotation step,
+      and what file path contains those filtered variants?
+    answer_type: string_exact
+
