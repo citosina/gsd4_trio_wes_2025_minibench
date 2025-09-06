@@ -14,4 +14,15 @@ DataFiles/
 .DS_Store
 __pycache__/
 EOF
+# Ignore SSH keys
+key
+key.pub
+*.pem
+*.ppk
 
+
+# Ignore SSH keys
+key
+key.pub
+*.pem
+*.ppk
