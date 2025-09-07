@@ -55,15 +55,15 @@ else
 fi
 
 echo "[INFO] Copying FASTQs and reference to ${DATA_DIR}/"
-rsync -ah --info=progress2 "${SRC_ROOT}/fastq/" "${DEST_FASTQ}/"
-rsync -ah --info=progress2 "${SRC_ROOT}/ref/"   "${DEST_REF}/"
+cp -a "${SRC_ROOT}/fastq/." "${DEST_FASTQ}/"
+cp -a "${SRC_ROOT}/ref/."   "${DEST_REF}/"
 
 # Verify checksums if present at source; otherwise compute new ones in destination
 if [[ -f "${SRC_ROOT}/CHECKSUMS.sha256" ]]; then
   echo "[INFO] Verifying checksums from source..."
   # Recompute in destination so path prefixes match
   (cd "${DATA_DIR}" && find fastq ref -type f -print0 | xargs -0 sha256sum > CHECKSUMS.sha256)
-  (cd "${DATA_DIR}" && sha256sum -c CHECKSUMS.sha256)
+  (cd "${DATA_DIR}" && shasum -a 256 -c CHECKSUMS.sha256)
   echo "[INFO] Checksums OK."
 else
   echo "[WARN] No CHECKSUMS.sha256 found in source; generating fresh checksums in ${DATA_DIR}"
