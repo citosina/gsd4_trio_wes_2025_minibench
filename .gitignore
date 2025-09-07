@@ -1,0 +1,33 @@
+# Keep this file trackable even with broad rules
+!.gitignore
+
+# ---- Results: ignore everything except the placeholder README ----
+sample_submission_boilerplate/results/*
+!sample_submission_boilerplate/results/README.md
+
+# ---- Data: ignore everything except the placeholder README ----
+sample_submission_boilerplate/data/*
+!sample_submission_boilerplate/data/README.md
+
+# Packed archives (don’t commit big zips)
+*.zip
+
+# FASTQ/FASTA and indices (prevent accidental commits)
+*.fastq
+*.fastq.gz
+*.fa
+*.fa.*
+*.fasta
+*.fai
+*.dict
+*.amb
+*.ann
+*.pac
+*.bwt*
+*.0123
+
+# Logs / caches
+*.log
+*.stats.txt
+__pycache__/
+*.pyc
