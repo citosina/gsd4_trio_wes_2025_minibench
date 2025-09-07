@@ -1,40 +1,42 @@
 task: >
-  You have been given raw exome sequencing data from a trio (father, mother, proband)
-  affected by glycogen storage disease IV. Using the provided subsampled paired-end FASTQ
-  files and a GRCh38 chr3 reference, answer the following.
+  Using the data in the data folder and the provided workflows in the workflow folder,
+  answer the following questions about the GSD4 trio whole-exome sequencing mini-benchmark
+  (Harsono et al., 2024, DOI: 10.1016/j.dib.2024.111231). You must run the provided workflows.
+  Do not create any synthetic data. Do not translate the provided workflow into a different language.
 
 questions:
   - id: q1
-    stage: data_prep
+    stage: alignment
     text: |
-      After subsampling with seed=100, how many reads are present in
-      SRR27997292_1.mini150k_s100.fastq.gz?
-    answer_type: integer_exact
+      How many reads from each of the three samples (father, mother, proband)
+      successfully aligned to the GRCh38 chr3 reference sequence?
+    answer_type: integer_per_sample  # expects a per-sample mapping of counts
+    tolerance_percent: 5              # 5% tolerance on each sample’s count
 
   - id: q2
-    stage: joint_calling
+    stage: variant_calling
     text: |
-      How many samples appear in the VCF header line beginning with '#CHROM'
-      produced by 02_joint_call_bcftools.sh?
-    answer_type: integer_exact
+      How many SNPs and indels are present in the trio VCF file?
+    answer_type: integer_pair         # expects two integers: snps, indels
+    tolerance: 5                      # allow small absolute drift (e.g., ±5)
 
   - id: q3
-    stage: joint_calling
+    stage: variant_statistics
     text: |
-      What is the exact sample order (left-to-right) in the VCF columns after FORMAT?
-    answer_type: string_exact
+      What is the overall Ti/Tv ratio across all variants?
+    answer_type: numeric_float
+    tolerance: 0.05
 
   - id: q4
     stage: mendelian_check
     text: |
-      Provide the exact three lines of the PED file used for bcftools +mendelian
-      (results/reports/trio.ped). Use single spaces between fields.
-    answer_type: string_multiline
+      How many Mendelian violations are reported across the trio?
+    answer_type: integer_exact
+    tolerance: 0
 
   - id: q5
     stage: annotation
     text: |
-      Which gene symbol is used to prefilter candidates in the optional annotation step,
-      and what file path contains those filtered variants?
+      According to SnpEff annotation, which gene harbors the highest-impact variant in the proband?
     answer_type: string_exact
 
