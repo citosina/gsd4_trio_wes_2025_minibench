@@ -34,9 +34,10 @@ questions:
     answer_type: integer_exact
     tolerance: 0
 
-  - id: q5
-    stage: annotation
+ - id: q5
+    stage: quality_control
     text: |
-      According to SnpEff annotation, which gene harbors the highest-impact variant in the proband?
-    answer_type: string_exact
-
+      After subsampling and alignment, what percentage of reads from the proband
+      were retained as properly paired alignments in the BAM file?
+    answer_type: numeric_percent
+    tolerance: 1
